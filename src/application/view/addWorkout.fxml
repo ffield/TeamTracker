@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <SplitPane dividerPositions="0.3674698795180723" layoutY="-2.0" prefHeight="608.0" prefWidth="500.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <ListView fx:id="rowerListView" layoutX="-12.0" layoutY="-1.0" prefHeight="614.0" prefWidth="200.0" />
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <TextField fx:id="workoutDescriptionField" layoutX="19.0" layoutY="107.0" prefHeight="65.0" prefWidth="269.0" promptText="Description" />
+                  <DatePicker fx:id="dateField" layoutX="21.0" layoutY="24.0" prefHeight="65.0" prefWidth="269.0" promptText="Date " />
+                  <TextField fx:id="workoutTimeField" layoutX="21.0" layoutY="186.0" prefHeight="65.0" prefWidth="269.0" promptText="Time" />
+                  <TextArea fx:id="workoutNotesArea" layoutX="21.0" layoutY="267.0" prefHeight="200.0" prefWidth="269.0" promptText="Notes" />
+                  <Button fx:id="logButton" layoutX="23.0" layoutY="495.0" mnemonicParsing="false" onAction="#handleLogButton" prefHeight="65.0" prefWidth="262.0" text="Log" />
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>
