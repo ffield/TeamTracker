@@ -1,9 +1,9 @@
 package application.view;
 
 import application.Main;
-import application.model.ergSplit;
-import application.model.pr;
-import application.model.rower;
+import application.model.ErgSplit;
+import application.model.Pr;
+import application.model.Rower;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -15,10 +15,10 @@ public class addRowerController extends mainScreenController {
 	String rowerName;
 	String rowerHeight;
 	Integer rowerWeight;
-	ListView<rower> rowersListView;
-	ObservableList<rower> rowers;
-    ObservableList<pr> rowerPRs = FXCollections.observableArrayList();
-	public void setList(ObservableList<rower> cRowers, ListView<rower> cRowersListView){
+	ListView<Rower> rowersListView;
+	ObservableList<Rower> rowers;
+    ObservableList<Pr> rowerPRs = FXCollections.observableArrayList();
+	public void setList(ObservableList<Rower> cRowers, ListView<Rower> cRowersListView){
 		this.rowers = cRowers;
 		this.rowersListView = cRowersListView;
 	}
@@ -48,8 +48,8 @@ public class addRowerController extends mainScreenController {
 	
 	public void handleAddPRButton(){
 		Integer dist = Integer.valueOf(prDistance.getText());
-		ergSplit time = new ergSplit(prTime.getText());
-		pr initPR = new pr(dist,time);
+		ErgSplit time = new ErgSplit(prTime.getText());
+		Pr initPR = new Pr(dist,time);
 		System.out.println(initPR);
 		System.out.println(rowerPRs);
 		rowerPRs.add(initPR);
@@ -62,11 +62,11 @@ public class addRowerController extends mainScreenController {
 		rowerName = newRowerName.getText();
 		rowerHeight = newRowerHeight.getText();
 		rowerWeight = Integer.valueOf(newRowerWeight.getText());
-		rowers.add( new rower(rowerName,rowerHeight,rowerWeight,rowerPRs));
+		rowers.add( new Rower(rowerName,rowerHeight,rowerWeight,rowerPRs));
 		newRowerName.clear();
 		newRowerHeight.clear();
 		newRowerWeight.clear();
-		ObservableList<pr> newRowerPRs = FXCollections.observableArrayList();
+		ObservableList<Pr> newRowerPRs = FXCollections.observableArrayList();
 		rowerPRs = newRowerPRs;
 		//System.out.println(rowers);
 		rowersListView.setItems(rowers);

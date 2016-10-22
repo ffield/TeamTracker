@@ -6,10 +6,10 @@ import java.util.Date;
 import java.util.List;
 
 import application.Main;
-import application.model.ergSplit;
-import application.model.pr;
-import application.model.rower;
-import application.model.workout;
+import application.model.ErgSplit;
+import application.model.Pr;
+import application.model.Rower;
+import application.model.Workout;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -19,27 +19,30 @@ import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
+import javafx.scene.chart.XYChart.Series;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class mainScreenController {
-	ObservableList<workout> workouts = FXCollections.observableArrayList();
-	ObservableList<rower> rowers = FXCollections.observableArrayList();
+	ObservableList<Workout> workouts = FXCollections.observableArrayList();
+	ObservableList<Rower> rowers = FXCollections.observableArrayList();
 	
 	
 	private Main mainApp;
 	@FXML
-	public ListView<workout> workoutList;
+	public ListView<Workout> workoutList;
 	
 	@FXML
-	public ListView<rower> rowerList;
+	public ListView<Rower> rowerList;
 	
 	@FXML
-	public ListView<pr> PRList;
+	public ListView<Pr> PRList;
 	
 	@FXML
 	public Button addWorkoutButton;
@@ -57,23 +60,43 @@ public class mainScreenController {
 	public TextField heightField;
 	
 	@FXML
-	public LineChart<Integer,Integer> splitChart;
+	public LineChart<Integer,Double> splitChart;
 	
 	@FXML
 	public PieChart weekChart;
 	
-	public void setRower(ObservableList<rower> rowersList){
+	@FXML
+	public TextArea notesTextArea;
+	
+	@FXML
+	public TextField splitTextField;
+	
+	@FXML
+	public TextField workoutTextField;
+	
+	@FXML
+	public Text splitFieldText;
+	
+	@FXML
+	public Text workoutFieldText;
+	
+	@FXML
+	public Text workoutAreaText;
+	
+	
+	
+	public void setRower(ObservableList<Rower> rowersList){
 		rowerList.setItems(rowersList);
 		
 	}
 	
-	public rower currentRower;
+	public Rower currentRower;
 	
 	
 	@FXML
 	public void handleMouseClicked(){
 		if (!rowers.isEmpty()){
-		rower cr = rowers.get(rowerList.getSelectionModel().getSelectedIndex());
+		Rower cr = rowers.get(rowerList.getSelectionModel().getSelectedIndex());
 		currentRower = cr;
 		nameField.setText(cr.getName());
 		weightField.setText(Integer.toString(cr.getWeight()));
@@ -118,13 +141,17 @@ public class mainScreenController {
 		stage.show();
 	}
 	
+	@SuppressWarnings("unchecked")
 	@FXML
 	public void handleClickedWorkoutList(){
-		workout wo = currentRower.getWorkouts().get(workoutList.getSelectionModel().getSelectedIndex());
+		Workout wo = currentRower.getWorkouts().get(workoutList.getSelectionModel().getSelectedIndex());
 		System.out.println(wo);
-		XYChart.Series series1 = currentRower.getSeries(wo);
+		Series<Integer, Double> series1 = currentRower.getSeries(wo);
 		splitChart.setTitle(wo.getTitle());
 		splitChart.getData().addAll(series1);
+		workoutTextField.setText(wo.getTitle());
+		splitTextField.setText(wo.getSplit().toString());
+		notesTextArea.setText(wo.getNotes());
 	}
 	
 	@FXML

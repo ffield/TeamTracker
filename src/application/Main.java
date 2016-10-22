@@ -44,13 +44,8 @@ public class Main extends Application {
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("TeamTracker");
-        
-        // Set the application icon.
-        //this.primaryStage.getIcons().add(new Image("file:resources/images/address_book_32.png"));
-
         initRootLayout();
         showMain();
-        //showMortgage();
     }
 
     /**
@@ -89,7 +84,7 @@ public class Main extends Application {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource("view/mainScreen.fxml"));
             AnchorPane mainScreen = (AnchorPane) loader.load();
-
+            
             // Set person overview into the center of root layout.
             rootLayout.setCenter(mainScreen);
 
